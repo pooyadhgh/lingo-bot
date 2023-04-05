@@ -5,19 +5,23 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { PROMPT_TYPES } from "../constants";
+import Result from "./Result";
 
 const Prompt = () => {
   const [text, setText] = useState("");
+  const [result, setResult] = useState("");
+  // const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const handleButtonClick = (promptType) => {
     if (!text) {
       setError("Please enter your text");
+      setResult("");
       return;
     }
 
-    console.log(text, promptType);
+    setResult(`${text} and type: ${promptType}`);
   };
 
   const handleOnInputChange = (event) => {
@@ -26,9 +30,9 @@ const Prompt = () => {
   };
 
   return (
-    <Container style={{ margin: "5rem auto" }}>
+    <Container>
       {error && (
-        <Alert severity='error' style={{ margin: "1rem auto" }}>
+        <Alert severity='error' style={{ margin: "2rem auto" }}>
           {error}
         </Alert>
       )}
@@ -44,7 +48,7 @@ const Prompt = () => {
 
       <Container
         style={{
-          margin: "3rem auto",
+          margin: "2rem auto",
           display: "flex",
           justifyContent: isSmallScreen ? "flex-start" : "center",
           gap: "1rem",
@@ -75,6 +79,8 @@ const Prompt = () => {
           Rewrite my text
         </Button>
       </Container>
+
+      {result && <Result response={result} />}
     </Container>
   );
 };
