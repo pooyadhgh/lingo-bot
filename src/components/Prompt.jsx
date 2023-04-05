@@ -30,7 +30,7 @@ const Prompt = () => {
   };
 
   return (
-    <Container>
+    <Container maxWidth='md'>
       {error && (
         <Alert severity='error' style={{ margin: "2rem auto" }}>
           {error}

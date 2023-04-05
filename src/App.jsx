@@ -21,7 +21,7 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Container style={{ margin: "5rem auto" }}>
+      <Container style={{ margin: "5rem auto 1rem" }}>
         <Home />
       </Container>
     </ThemeProvider>
