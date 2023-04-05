@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <Container style={{ margin: "5rem auto" }}>
       <Typography variant='h1' fontSize={40} fontWeight={600} marginBottom={3}>
-        Lingo Bot
+        Lingo Bot 🤖
       </Typography>
 
       <Typography variant='body1' marginBottom={2}>

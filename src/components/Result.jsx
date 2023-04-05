@@ -26,7 +26,7 @@ const Result = ({ response }) => {
   return (
     <Container style={{ margin: "5rem auto" }} ref={ref}>
       <Typography variant='h2' fontSize={24} fontWeight={600} marginBottom={3}>
-        Here is the result:
+        You asked for it, and here it is:
       </Typography>
 
       <Typography variant='body1' marginBottom={3}>
@@ -39,7 +39,7 @@ const Result = ({ response }) => {
         startIcon={<ContentCopyIcon />}
         onClick={handleOnButtonClick}
       >
-        {isCopied ? "Copied!" : "Copy to clipboard"}
+        {isCopied ? "Copied!" : "Copy"}
       </Button>
     </Container>
   );

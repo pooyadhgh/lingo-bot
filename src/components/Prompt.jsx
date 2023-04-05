@@ -16,7 +16,7 @@ const Prompt = () => {
 
   const handleButtonClick = (promptType) => {
     if (!text) {
-      setError("Please enter your text");
+      setError("Oops! You forgot to write something.");
       setResult("");
       return;
     }
@@ -45,7 +45,7 @@ const Prompt = () => {
 
       <TextField
         fullWidth
-        label='Enter your text'
+        label='Start writing here...'
         multiline
         rows={10}
         value={text}
@@ -67,7 +67,7 @@ const Prompt = () => {
           onClick={() => handleButtonClick(PROMPT_TYPES.REVIEW)}
           loading={loading === PROMPT_TYPES.REVIEW}
         >
-          Review my text
+          Analyze my text
         </LoadingButton>
 
         <LoadingButton
@@ -76,7 +76,7 @@ const Prompt = () => {
           onClick={() => handleButtonClick(PROMPT_TYPES.CORRECT)}
           loading={loading === PROMPT_TYPES.CORRECT}
         >
-          Correct my text
+          Polish my text
         </LoadingButton>
 
         <LoadingButton
