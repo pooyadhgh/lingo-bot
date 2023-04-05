@@ -32,7 +32,6 @@ const Prompt = () => {
       if (choice) {
         setResult(choice);
         setLoading("");
-        setText("");
         setError("");
       } else {
         throw new Error(

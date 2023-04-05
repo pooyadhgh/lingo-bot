@@ -16,7 +16,7 @@ export const getAIResponse = async (promptType, text) => {
   const body = JSON.stringify({
     prompt,
     model: "text-davinci-003",
-    temperature: 0.8,
+    temperature: 0.5,
     max_tokens: 300,
     top_p: 1.0,
     frequency_penalty: 0.8,
