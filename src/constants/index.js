@@ -1,0 +1,5 @@
+export const PROMPT_TYPES = {
+  REVIEW: "REVIEW",
+  CORRECT: "CORRECT",
+  REWRITE: "REWRITE",
+};
