@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { PROMPT_TYPES } from "../constants";
 import Result from "./Result";
 
 const Prompt = () => {
   const [text, setText] = useState("");
-  const [result, setResult] = useState("");
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("");
   const [error, setError] = useState("");
+  const [result, setResult] = useState("");
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const handleButtonClick = (promptType) => {
@@ -21,11 +21,17 @@ const Prompt = () => {
       return;
     }
 
+    setLoading(promptType);
+
     setResult(`${text} and type: ${promptType}`);
   };
 
   const handleOnInputChange = (event) => {
-    if (error) setError("");
+    if (error || loading) {
+      setError("");
+      setLoading("");
+    }
+
     setText(event.target.value);
   };
 
@@ -48,36 +54,39 @@ const Prompt = () => {
 
       <Container
         style={{
-          margin: "2rem auto",
+          margin: "3rem auto",
           display: "flex",
           justifyContent: isSmallScreen ? "flex-start" : "center",
           gap: "1rem",
           flexWrap: "wrap",
         }}
       >
-        <Button
+        <LoadingButton
           variant='contained'
           size='large'
           onClick={() => handleButtonClick(PROMPT_TYPES.REVIEW)}
+          loading={loading === PROMPT_TYPES.REVIEW}
         >
           Review my text
-        </Button>
+        </LoadingButton>
 
-        <Button
+        <LoadingButton
           variant='contained'
           size='large'
           onClick={() => handleButtonClick(PROMPT_TYPES.CORRECT)}
+          loading={loading === PROMPT_TYPES.CORRECT}
         >
           Correct my text
-        </Button>
+        </LoadingButton>
 
-        <Button
+        <LoadingButton
           variant='contained'
           size='large'
           onClick={() => handleButtonClick(PROMPT_TYPES.REWRITE)}
+          loading={loading === PROMPT_TYPES.REWRITE}
         >
           Rewrite my text
-        </Button>
+        </LoadingButton>
       </Container>
 
       {result && <Result response={result} />}
