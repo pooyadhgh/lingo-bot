@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Alert from "@mui/material/Alert";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { getAIResponse } from "../utils/services";
 import { PROMPT_TYPES } from "../constants";
 import Result from "./Result";
 
@@ -14,16 +15,34 @@ const Prompt = () => {
   const [result, setResult] = useState("");
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
-  const handleButtonClick = (promptType) => {
+  const handleButtonClick = async (promptType) => {
+    setResult("");
+
     if (!text) {
       setError("Oops! You forgot to write something.");
-      setResult("");
       return;
     }
 
     setLoading(promptType);
 
-    setResult(`${text} and type: ${promptType}`);
+    try {
+      const response = await getAIResponse(promptType, text);
+      const choice = response?.choices[0]?.text;
+
+      if (choice) {
+        setResult(choice);
+        setLoading("");
+        setText("");
+        setError("");
+      } else {
+        throw new Error(
+          "Unfortunately, we couldn't find what you were looking for. It's Chat GPT not us!"
+        );
+      }
+    } catch (err) {
+      setError(err.message);
+      setLoading("");
+    }
   };
 
   const handleOnInputChange = (event) => {
@@ -64,8 +83,8 @@ const Prompt = () => {
         <LoadingButton
           variant='contained'
           size='large'
-          onClick={() => handleButtonClick(PROMPT_TYPES.REVIEW)}
-          loading={loading === PROMPT_TYPES.REVIEW}
+          onClick={() => handleButtonClick(PROMPT_TYPES.ANALYZE)}
+          loading={loading === PROMPT_TYPES.ANALYZE}
         >
           Analyze my text
         </LoadingButton>
