@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 
 const Hero = () => {
   return (
-    <Container style={{ margin: "5rem auto" }}>
+    <Container style={{ margin: "3rem auto" }}>
       <Typography variant='h1' fontSize={40} fontWeight={600} marginBottom={3}>
         Lingo Bot 🤖
       </Typography>

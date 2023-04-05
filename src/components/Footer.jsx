@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 
 const Footer = () => {
   return (
-    <Container style={{ margin: "15rem auto 0", textAlign: "center" }}>
+    <Container style={{ margin: "15rem auto 2rem", textAlign: "center" }}>
       <Typography variant='body1' marginBottom={1}>
         Developed with ❤️ by{" "}
         <Link href='https://pooyadhgh.com/'>Pooya Dehghani</Link>
